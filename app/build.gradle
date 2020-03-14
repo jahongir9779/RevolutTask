@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-allopen'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.revolut.testapp"
+        minSdkVersion 16
+        targetSdkVersion 29
+        multiDexEnabled = true
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+allOpen {
+    annotation("org.androidannotations.api.KotlinOpen")
+}
+
+dependencies {
+
+
+    implementation mobileUiDependencies.javaxAnnotation
+
+    implementation mobileUiDependencies.kotlin
+    implementation mobileUiDependencies.javaxInject
+    implementation mobileUiDependencies.rxKotlin
+    implementation mobileUiDependencies.androidAnnotations
+    implementation mobileUiDependencies.androidSupportV4
+    implementation mobileUiDependencies.supportRecyclerView
+    implementation mobileUiDependencies.constraintLayout
+    implementation mobileUiDependencies.supportDesign
+    implementation mobileUiDependencies.timber
+    implementation mobileUiDependencies.rxAndroid
+    implementation mobileUiDependencies.glide
+    implementation mobileUiDependencies.dagger
+    implementation mobileUiDependencies.daggerSupport
+    implementation mobileUiDependencies.daggerAndroid
+    implementation mobileUiDependencies.multidex
+    implementation mobileUiDependencies.lifecycleRuntime
+    implementation mobileUiDependencies.lifecycleExtensions
+    implementation mobileUiDependencies.lifecycleJava8
+    implementation mobileUiDependencies.appCompatV7
+    implementation remoteDependencies.okHttp
+    implementation remoteDependencies.okHttpLogger
+    implementation remoteDependencies.retrofit
+    implementation remoteDependencies.retrofitConverter
+    implementation remoteDependencies.retrofitAdapter
+
+    implementation 'com.github.midorikocak:currency-picker-android:1.2.1'
+
+    annotationProcessor mobileUiDependencies.lifecycleCompiler
+
+
+    kapt mobileUiDependencies.daggerCompiler
+    kapt mobileUiDependencies.daggerProcessor
+    compileOnly mobileUiDependencies.glassfishAnnotation
+
+
+
+    testImplementation 'junit:junit:4.13'
+
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    androidTestImplementation 'androidx.test:core:1.2.0'
+//    androidTestImplementation 'androidx.test.ext:junit-ktx:1.2.0'
+
+}
